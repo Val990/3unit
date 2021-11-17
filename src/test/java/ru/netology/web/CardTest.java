@@ -40,10 +40,10 @@ public class CardTest {
     @Test
      public void shouldSendForm() {
         driver.get("http://localhost:9999/");
-        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Иванов Иван"); //фио
-        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79999999999"); // тел
-        driver.findElement(By.cssSelector(".checkbox__box")).click(); // галочка
-        driver.findElement(By.cssSelector("button")).click(); //отправить
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Иванов Иван");
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79999999999");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
         String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         assertEquals(expected, actualText.trim(), "Текст не совпадает");
