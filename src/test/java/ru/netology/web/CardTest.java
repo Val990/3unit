@@ -53,8 +53,10 @@ public class CardTest {
     public void shouldSendFormEnglishName() {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("ivanov ivan");
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79999999999");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
         driver.findElement(By.cssSelector("button")).click();
-        String actualText = driver.findElement(By.cssSelector(".input__sub")).getText();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText();
         String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
         assertEquals(expected, actualText.trim(), "Текст не совпадает");
     }
@@ -63,8 +65,9 @@ public class CardTest {
     public void shouldSendFormEmptyName() {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79999999999");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
         driver.findElement(By.cssSelector("button")).click();
-        String actualText = driver.findElement(By.cssSelector(".input__sub")).getText();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText();
         String expected = "Поле обязательно для заполнения";
         assertEquals(expected, actualText.trim(), "Текст не совпадает");
     }
@@ -74,8 +77,9 @@ public class CardTest {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Петров Олег");
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("00000");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
         driver.findElement(By.cssSelector("button")).click();
-        String actualText = driver.findElement(By.cssSelector("[data-test-id='phone'] .input__sub")).getText();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText();
         String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
         assertEquals(expected, actualText.trim(), "Текст не совпадает");
     }
@@ -84,8 +88,9 @@ public class CardTest {
     public void shouldSendFormEmptyNumber() {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Петров Олег");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
         driver.findElement(By.cssSelector("button")).click();
-        String actualText = driver.findElement(By.cssSelector("[data-test-id='phone'] .input__sub")).getText();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText();
         String expected = "Поле обязательно для заполнения";
         assertEquals(expected, actualText.trim(), "Текст не совпадает");
     }
@@ -94,7 +99,7 @@ public class CardTest {
     public void shouldSendEmptyForm() {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("button")).click();
-        String actualText = driver.findElement(By.cssSelector(".input__sub")).getText();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText();
         String expected = "Поле обязательно для заполнения";
         assertEquals(expected, actualText.trim(), "Текст не совпадает");
     }
@@ -117,7 +122,7 @@ public class CardTest {
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79999990000");
         driver.findElement(By.cssSelector(".checkbox__box")).click();
         driver.findElement(By.cssSelector("button")).click();
-        String actualText = driver.findElement(By.cssSelector(".input__sub")).getText();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText();
         String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
         assertEquals(expected, actualText.trim(), "Текст не совпадает");
 
